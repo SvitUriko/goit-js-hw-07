@@ -36,12 +36,18 @@ function onClick(event){
         </div>
     `);
 
-    document.addEventListener('keydown', (event) => {
+    function onKeyUp(event) {
       if (event.code === 'Escape') {
         instance.close();
       }
-    });
+    };
 
-instance.show()
+    document.addEventListener('keydown', onKeyUp);
+
+    instance.show()
+
+    if (!instance.visible()) {
+      document.removeEventListener('keydown', onKeyUp);
+    }
 }
     
